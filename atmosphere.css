@@ -1,0 +1,49 @@
+/* Light and motion stay on decorative layers; reading and scrollports stay still. */
+.welcome-beacon{position:relative;isolation:isolate}
+.welcome-beacon::before{content:'';position:absolute;width:72px;height:72px;left:50%;top:50%;margin:-36px;border:1px solid #d5c2ec22;border-radius:50%;background:radial-gradient(circle,#cbb0e90a,transparent 65%);animation:beacon-orbit 13s ease-in-out infinite;pointer-events:none}
+.welcome-beacon::after{content:'';position:absolute;width:108px;height:108px;left:50%;top:50%;margin:-54px;border:1px solid #c4b3e00c;border-radius:50%;animation:beacon-orbit 19s -7s ease-in-out infinite reverse;pointer-events:none}
+.welcome h1{color:#f1e9fa;text-shadow:0 2px 32px #08071299}
+.welcome h1 em{color:#d7c5eb;text-shadow:0 0 38px #b498d92b}
+.eyebrow{color:#c3b4d5}
+.intro-copy,.headphone{max-width:100%;text-wrap:pretty}
+.primary{position:relative;isolation:isolate;transition:background .5s,border-color .5s,box-shadow .5s,transform .5s}
+.primary::after{content:'';position:absolute;left:18%;right:18%;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,#e9d4fc77,transparent);opacity:.4;transform:scaleX(.6);transition:opacity .5s,transform .7s;pointer-events:none}
+.primary:hover::after,.primary:focus-visible::after{opacity:1;transform:scaleX(1.2)}
+.primary:hover{box-shadow:0 12px 36px -25px #c4a2f8aa}
+.icon-button{transition:border-color .4s,background .4s,box-shadow .4s}
+.icon-button:hover{background:#b69bd611;border-color:#c9b1e552;box-shadow:0 0 20px #af8bd30b}
+.star.available .star-core{animation:living-star 5.7s ease-in-out infinite}
+.star.complete .star-core{animation:living-star 8.3s ease-in-out infinite}
+.star.available::after{inset:0;border:1px solid #d5bbee20;background:radial-gradient(circle,#c5a2ef14,transparent 70%);animation:orbit-breath 6.7s ease-in-out infinite}
+.star-caption{text-shadow:0 2px 12px #030510;letter-spacing:1.8px}
+.star.available .star-caption{color:#e0d0ee}
+#chapter::backdrop,#gift::backdrop{background:radial-gradient(ellipse at 50% 46%,#050710ac, #05071055 57%,#05071018 100%)}
+.chapter-heading::after{content:'';display:block;width:70px;height:1px;background:linear-gradient(90deg,transparent,#c9b5df60,transparent);margin:25px auto 28px}
+#chapter-body p,#gift-content p{color:#d0cada}
+#chapter-quote{color:#d8c4e9;text-wrap:pretty;text-shadow:0 0 25px #b596d324}
+#chapter.open .chapter-heading{animation:content-arrive 1.25s both}
+#chapter.open #chapter-body{animation:content-arrive 1.35s .12s both}
+#chapter.open #chapter-quote{animation:content-arrive 1.5s .22s both}
+.close:hover{background:#c5a8e511;box-shadow:0 0 25px #bca0d918}
+.discovery-notice{border-color:#cbb6e02b;background:linear-gradient(120deg,#121023e8,#080b16dc);box-shadow:0 10px 45px #01030a55}
+.epilogue-stars{animation:epilogue-glow 8s ease-in-out infinite}
+.astral-connection{filter:drop-shadow(0 0 35px #ad83d512)}
+.country-outlines{stroke-opacity:.46;fill-opacity:.8}
+.astral-link{stroke-opacity:.32}
+@keyframes living-star{0%,100%{opacity:.8;box-shadow:0 0 9px #e1cfff,0 0 24px 5px #b8a0ee55}45%{opacity:1;box-shadow:0 0 14px 2px #f2e9ff,0 0 35px 9px #b9a0ef77}72%{opacity:.88}}
+@keyframes orbit-breath{0%,100%{opacity:.3;transform:scale(.83)}50%{opacity:.72;transform:scale(1.09)}}
+@keyframes beacon-orbit{0%,100%{opacity:.4;transform:scale(.91) rotate(-12deg)}50%{opacity:.85;transform:scale(1.08) rotate(12deg)}}
+@keyframes content-arrive{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@keyframes epilogue-glow{0%,100%{opacity:.65;text-shadow:0 0 14px #be9ddd33}50%{opacity:1;text-shadow:0 0 24px #ceb4ee66}}
+@media(max-width:650px){.star-caption{letter-spacing:1px}.chapter-heading::after{margin:22px auto 25px}.welcome-beacon::before{width:60px;height:60px;margin:-30px}.welcome-beacon::after{width:90px;height:90px;margin:-45px}}
+@media(prefers-reduced-motion:reduce){.welcome-beacon::before,.welcome-beacon::after,.star .star-core,.star.available::after,.epilogue-stars{animation:none!important}#chapter.open .chapter-heading,#chapter.open #chapter-body,#chapter.open #chapter-quote{animation:none!important}.primary,.primary::after{transition:none}}
+.welcome-beacon::after{background:none}
+/* Status replaces the eyebrow, never floating over the interactive galaxy. */
+#explore-copy:has(>.discovery-notice.visible)>.eyebrow{opacity:0}
+#explore-copy .discovery-notice{position:absolute;left:0;top:0;bottom:auto;z-index:auto;width:290px;max-width:100%;padding:0;border:0;border-radius:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;transform:none;grid-template-columns:15px minmax(0,1fr);column-gap:7px;row-gap:0;overflow:visible}
+#explore-copy .discovery-notice.visible{transform:none}
+#explore-copy .discovery-notice::before{display:none}
+#explore-copy .notice-title{font-size:10px;line-height:1.4;color:#d9c9e9}
+#explore-copy .notice-detail{font-size:9px;line-height:1.4;color:#a99cb8}
+@media(max-width:650px){#explore-copy .discovery-notice{width:260px;max-width:100%}#explore-copy .notice-title{font-size:9px}#explore-copy .notice-detail{font-size:8px}}
+#explore-copy>p:not(.eyebrow){font-size:11px;line-height:1.8;color:#a9a3b8;max-width:290px}@media(max-width:650px){#explore-copy>p:not(.eyebrow){font-size:10px;max-width:215px}}

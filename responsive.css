@@ -1,0 +1,29 @@
+/* The camera may zoom, but it must never enlarge the document viewport. */
+html,body{width:100%;height:100%;max-width:100%;overflow:hidden;overscroll-behavior:none;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{position:fixed;inset:0}
+#universe{position:fixed;inset:0;width:100%;height:var(--view-height,100%);min-height:0;overflow:hidden;isolation:isolate}
+#starfield{contain:layout size;pointer-events:auto}
+#cosmos{width:100%;height:100%;object-fit:cover}
+#chapter,#gift{inset:0;margin:0;width:100%;min-width:0;max-width:100%;height:var(--view-height,100%);max-height:var(--view-height,100%);overflow:hidden;transform:none}
+#chapter .chapter-scroll,#gift .chapter-scroll{position:absolute;inset:0;width:100%;max-width:none;height:100%;max-height:100%;padding:0;overflow-y:auto;overflow-x:hidden;transform:none;filter:none;opacity:1;transition:none;overscroll-behavior:contain}
+.chapter-content{width:min(640px,100%);min-width:0;margin:0 auto;padding:clamp(105px,18vh,160px) 40px calc(64px + var(--safe-bottom));overflow-wrap:anywhere}
+#chapter .chapter-content{opacity:0;transform:translateY(14px);transition:opacity 1.1s,transform 1.3s;pointer-events:none}
+#chapter.open .chapter-content{opacity:1;transform:none;pointer-events:auto}
+#gift .chapter-content{padding-top:clamp(95px,15vh,140px)}
+img,video,svg{max-width:100%}
+.primary{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+#connection-map{outline:none;scroll-margin-top:20px}
+.map-hint{display:none}
+@media(max-width:800px){
+  .map-hint{display:flex;justify-content:center;align-items:center;gap:12px;margin:22px auto 8px;padding:12px 10px;max-width:100%;border:0;border-bottom:1px solid #c8b4e43d;background:transparent;font-size:11px;line-height:1.6;color:#d3c0e8}
+  .map-hint span{animation:map-direction 2.5s ease-in-out infinite;font-size:19px}
+  .epilogue-layout{margin:0 auto}
+}
+@media(max-width:650px){
+  .chapter-content{padding:115px 28px calc(64px + var(--safe-bottom))}
+  #gift .chapter-content{padding-top:100px}
+}
+@media(max-width:360px){.chapter-content{padding-left:23px;padding-right:23px}}
+@media(max-height:500px) and (orientation:landscape){.chapter-content,#gift .chapter-content{padding-top:75px;padding-bottom:50px;max-width:580px}}
+@keyframes map-direction{50%{transform:translateY(4px)}}
+@media(prefers-reduced-motion:reduce){#chapter .chapter-content{transition:none;transform:none}.map-hint span{animation:none}}
